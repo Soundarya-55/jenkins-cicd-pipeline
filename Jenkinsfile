@@ -1,4 +1,3 @@
-```groovy
 pipeline {
     agent any
 
@@ -6,8 +5,7 @@ pipeline {
 
         stage('Checkout Code') {
             steps {
-                git branch: 'main',
-                    url: 'https://github.com/Soundarya-55/jenkins-cicd-pipeline.git'
+                checkout scm
             }
         }
 
@@ -42,9 +40,9 @@ pipeline {
                     docker rm jenkins-cicd-pipeline || true
 
                     docker run -d \
-                    --name jenkins-cicd-pipeline \
-                    -p 8081:80 \
-                    jenkins-cicd-pipeline:latest
+                        --name jenkins-cicd-pipeline \
+                        -p 8081:80 \
+                        jenkins-cicd-pipeline:latest
                 '''
             }
         }
@@ -60,4 +58,3 @@ pipeline {
         }
     }
 }
-```
